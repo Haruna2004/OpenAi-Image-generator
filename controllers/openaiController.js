@@ -7,11 +7,12 @@ const openai = new OpenAIApi(configuration);
 
 const generateImage = async (req, res) => {
   const { promptMsg, size } = req.body;
+  console.log(promptMsg);
   const imageSize =
     size === "small" ? "256x256" : size === "medium" ? "512x512" : "1024x1024";
   try {
     const response = await openai.createImage({
-      prompt: promptMsg || "a cat with blue eyes",
+      prompt: promptMsg,
       n: 1,
       size: imageSize,
     });
